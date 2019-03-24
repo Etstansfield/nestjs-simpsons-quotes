@@ -7,7 +7,7 @@ export class ImageService {
 
     constructor() {
         this.client = axios.create({
-            baseURL: 'https://frinkiac.com/api/search',
+            baseURL: 'https://frinkiac.com/api/search?q=',
             params: {
                 q: 'CHANGE_ME',
             },
@@ -19,5 +19,6 @@ export class ImageService {
             params: { q: quote },
         });
         return response.data;
+        // return 'https://frinkiac.com/api/search?q=' + quote;
     }
 }

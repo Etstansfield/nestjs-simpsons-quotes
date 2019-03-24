@@ -26,11 +26,12 @@ export class QuoteController {
         // const response = await this.quoteService.getQuote();
         // console.log(response);
         // try {
-        // const response2 = await this.imageService.getImage(encodeURIComponent(image));
+        const response2 = await this.imageService.getImage(image);
         /*} catch (error) {
             console.error(error);
         }*/
         // console.log(response2);
-        return encodeURIComponent(image);
+        // return encodeURIComponent(image);
+        return response2;
     }
 }
