@@ -2,6 +2,7 @@ import { Controller, Get, Next } from '@nestjs/common';
 import { QuoteService } from '../services/quote/quote.service';
 import { ImageService } from '../services/image/image.service';
 import { Quote } from '../classes/quote';
+import { Response } from '../classes/response';
 
 @Controller('quote')
 export class QuoteController {
@@ -14,11 +15,16 @@ export class QuoteController {
     }
 
     @Get()
-    async root(): Promise< Quote[] > {
+    async root(): Promise< Response > {
         const response = await this.quoteService.getQuote();
         // console.log(response);
         // const response2 = await this.imageService.getImage(response[0].quote);
-        return this.root2(response[0].quote);
+        const images = await this.root2(response[0].quote);
+        const fullResponse: Response = {
+            Quote: response[0].quote,
+            Image: images[0],
+        };
+        return fullResponse;
     }
 
     @Get('image')
